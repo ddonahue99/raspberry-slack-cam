@@ -1,8 +1,9 @@
 require 'sinatra'
 
 get "/" do
-  "lol"
+  "OK"
 end
 
 post '/cam' do
+  send_file File.join("test.jpg")
 end
