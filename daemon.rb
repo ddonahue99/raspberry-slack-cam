@@ -24,7 +24,7 @@ class PhotoDaemon
   def run!
     while(true) do
       puts "Taking picture"
-      `raspistill -o public/photo.jpg -w 800 -h 600`
+      `raspistill -o #{File.join('public/photo.jpg')} -w 800 -h 600`
       puts "Uploading to S3"
       upload_file
       puts "Taking a nap.."
