@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'thin'
 gem 'aws-sdk'
 gem 'nokogiri', '1.6.5'
+gem 'slack-notifier'
 
 group :development, :test do
   gem 'rake'

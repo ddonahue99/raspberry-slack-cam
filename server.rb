@@ -12,5 +12,8 @@ get '/cam' do
 end
 
 post '/cam' do
-  "https://s3.amazonaws.com/cafeteria-picam/photo.jpg"
+  channel = params[:channel_name]
+  notifier = Slack::Notifier.new ENV["WEBHOOK_URL"], channel: channel, username: "Andycam"
+  notifier.ping "<https://s3.amazonaws.com/cafeteria-picam/photo.jpg>"
+  ""
 end

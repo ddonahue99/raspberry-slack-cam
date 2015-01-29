@@ -16,7 +16,7 @@ class PhotoDaemon
   end
   
   def upload_file
-    file_name = File.join("public/photo.jpg")
+    file_name = File.expand_path("../public/photo.jpg", __FILE__)
     key = File.basename(file_name)
     s3.buckets[s3_config['bucket_name']].objects[key].write(:file => file_name)
   end
@@ -24,7 +24,7 @@ class PhotoDaemon
   def run!
     while(true) do
       puts "Taking picture"
-      `raspistill -o #{File.join('public/photo.jpg')} -w 800 -h 600`
+      `raspistill -o #{File.expand_path('../public/photo.jpg', __FILE__)} -w 800 -h 600`
       puts "Uploading to S3"
       upload_file
       puts "Taking a nap.."
@@ -33,4 +33,4 @@ class PhotoDaemon
   end
 end
 
-PhotoDaemon.new(File.join("config.yml")).run!
+PhotoDaemon.new(File.expand_path("../config.yml", __FILE__)).run!
